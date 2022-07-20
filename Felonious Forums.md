@@ -254,7 +254,7 @@ Now, on threads there are 2 interesting parts; one is the report button, and the
 
 ![](report_reply.png)
 
-What's interesting is that the application is allowing Markdown syntax in comments, which is then transformed to HTML. This is an idicator that we may be looking at XSS as the attack vector to get the bot's cookie. If we can inject javascript somehow in a page ang get the bot to visit, we gan get the flag in it's cookie.
+What's interesting is that the application is allowing Markdown syntax in comments, which is then transformed to HTML. This is an idicator that we may be looking at XSS as the attack vector to get the bot's cookie. If we can inject javascript somehow in a page ang get the bot to visit, we gan get the flag in its cookie.
 
 ## Finding XSS
 
